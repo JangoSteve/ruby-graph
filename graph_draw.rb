@@ -19,24 +19,36 @@ class GraphDraw
 
   def draw_data
     HEIGHT.times do |i|
-      this_line = HEIGHT - i
-      keys_this_line = self.data.scaled_hash.select{ |k, v| v == this_line }.keys
+      line = HEIGHT - i
 
       print VERTICAL_BORDER
       SPACE_BETWEEN_X_LABELS.times{ print " " }
 
-      self.data.hash.each do |k, v|
-        # Space to print before/after "*"
-        # Try to print in middle, but if odd length, e.g. 5, print 2 space before + 3 after
-        space_before = (k.length.to_f / 2).to_i - 1
-        space_after = (k.length + SPACE_BETWEEN_X_LABELS) - space_before - 1
-
-        space_before.times{ print EMPTY_CHAR }
-        print keys_this_line.include?(k) ? MARKER : EMPTY_CHAR
-        space_after.times{ print EMPTY_CHAR }
+      self.data.hash.each do |key, value|
+        self.draw_data_line(line, key)
       end
       print"\n"
     end
+  end
+
+  def draw_data_line(line, key)
+    # Space to print before/after "*"
+    # Try to print in middle, but if odd length, e.g. 5, print 2 space before + 3 after
+    space_before(key).times{ print EMPTY_CHAR }
+    print key_this_line?(line, key) ? MARKER : EMPTY_CHAR
+    space_after(key).times{ print EMPTY_CHAR }
+  end
+
+  def key_this_line?(line, key)
+    self.data.scaled_hash.any?{ |k, v| k == key && v == line }
+  end
+
+  def space_before(key)
+    (key.length.to_f / 2).to_i - 1
+  end
+
+  def space_after(key)
+    (key.length + SPACE_BETWEEN_X_LABELS) - space_before(key) - 1
   end
 
   def draw_x_axis
