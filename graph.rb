@@ -30,9 +30,13 @@ puts scaled_hash.inspect
 axis_length = data_array.map{ |a| a[0] }.inject(0) { |i, key, value| i += (key.length + 1) } + 1
 
 height.times do |i|
+  this_line = height - i
+  keys_this_line = scaled_hash.select{ |k, v| v == this_line }.keys
+
   print "|"
-  data_hash.keys.size.times do
-    print " *  "
+
+  data_hash.each do |k, v|
+    print " #{keys_this_line.include?(k) ? "*" : " "}  "
   end
   print"\n"
 end
