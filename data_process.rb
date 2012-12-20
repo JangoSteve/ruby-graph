@@ -1,4 +1,5 @@
-class Data
+class DataProcess
+  attr_accessor :data
 
   def initialize(file_path)
     self.data = File.read('data.txt')

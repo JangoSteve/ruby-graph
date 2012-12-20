@@ -1,11 +1,11 @@
-require './data.rb'
+require './data_process.rb'
 
 # -----------------
 # CONFIG
 # -----------------
 HEIGHT = 20
 
-data = Data.new('data.txt')
+data = DataProcess.new('data.txt')
 axis_length = data.array.map{ |a| a[0] }.inject(0) { |i, key, value| i += (key.length + 1) } + 1
 
 # -----------------
