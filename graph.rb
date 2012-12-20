@@ -1,20 +1,7 @@
 # -----------------
 # READ DATA
 # -----------------
-data = <<-EOC
-  January 1
-  February 19
-  March 1
-  April 5
-  May 5
-  June 7
-  July 1
-  August 9
-  September 2
-  October 14
-  November 4
-  December 6
-EOC
+data = File.read('data.txt')
 
 # -----------------
 # CONFIG
