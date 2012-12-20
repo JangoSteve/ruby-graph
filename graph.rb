@@ -18,18 +18,18 @@ data_array = data.split(/\n/).map(&:strip).reject{ |s| s.nil? || s == "" }.map{ 
 puts data
 puts data_array.inspect
 
+puts "OUTPUT:\n"
+
 20.times do
   puts "|"
 end
 
-100.times do
+axis_length = data_array.map{ |a| a[0] }.inject(0) { |i, key, value| i += (key.length + 1) } + 1
+axis_length.times do
   print "-"
 end
-puts " "
-2.times do
-  print " "
-end
+print "\n"
 
 data_array.each do |key, value|
-  print "#{key} "
+  print " #{key}"
 end
