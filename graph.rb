@@ -24,12 +24,12 @@ puts "MAX: #{max}"
 height = 20
 
 # Calculate scaled values
-scaled_values = data_hash.values.map{ |v| (max.to_f / 20 * v).round }
-puts scaled_values.inspect
+scaled_hash = data_hash.inject(Hash.new){ |h, a| h[a[0]] = (max.to_f / 20 * a[1]).round; h }
+puts scaled_hash.inspect
 
 axis_length = data_array.map{ |a| a[0] }.inject(0) { |i, key, value| i += (key.length + 1) } + 1
 
-height.times do
+height.times do |i|
   print "|"
   data_hash.keys.size.times do
     print " *  "
