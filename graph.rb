@@ -2,18 +2,18 @@
 # READ DATA
 # -----------------
 data = <<-EOC
-  Jan 1
-  Feb 19
-  Mar 1
-  Apr 5
+  January 1
+  February 19
+  March 1
+  April 5
   May 5
-  Jun 7
-  Jul 1
-  Aug 9
-  Sep 2
-  Oct 14
-  Nov 4
-  Dec 6
+  June 7
+  July 1
+  August 9
+  September 2
+  October 14
+  November 4
+  December 6
 EOC
 
 # -----------------
@@ -48,7 +48,14 @@ HEIGHT.times do |i|
   print "|"
 
   data_hash.each do |k, v|
-    print " #{keys_this_line.include?(k) ? "*" : " "}  "
+    # Space to print before/after "*"
+    # Try to print in middle, but if odd length, e.g. 5, print 2 space before + 3 after
+    space_before = (k.length.to_f / 2).to_i
+    space_after = k.length - space_before
+
+    space_before.times{ print " " }
+    print keys_this_line.include?(k) ? "*" : " "
+    space_after.times{ print " "}
   end
   print"\n"
 end
