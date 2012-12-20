@@ -22,21 +22,21 @@ class GraphDraw
       line = HEIGHT - i
 
       print VERTICAL_BORDER
-      SPACE_BETWEEN_X_LABELS.times{ print " " }
+      print " " * SPACE_BETWEEN_X_LABELS
 
       self.data.hash.each do |key, value|
         self.draw_data_line(line, key)
       end
-      print"\n"
+      print "\n"
     end
   end
 
   def draw_data_line(line, key)
     # Space to print before/after "*"
     # Try to print in middle, but if odd length, e.g. 5, print 2 space before + 3 after
-    space_before(key).times{ print EMPTY_CHAR }
+    print EMPTY_CHAR * space_before(key)
     print key_this_line?(line, key) ? MARKER : EMPTY_CHAR
-    space_after(key).times{ print EMPTY_CHAR }
+    print EMPTY_CHAR * space_after(key)
   end
 
   def key_this_line?(line, key)
@@ -52,11 +52,10 @@ class GraphDraw
   end
 
   def draw_x_axis
-    axis_length.times{ print HORIZONTAL_BORDER }
-    print "\n"
+    puts HORIZONTAL_BORDER * axis_length
 
     data.array.each do |key, value|
-      SPACE_BETWEEN_X_LABELS.times{ print " " }
+      print " " * SPACE_BETWEEN_X_LABELS
       print key
     end
     print "\n"
