@@ -21,3 +21,5 @@ From graph_draw.rb:
 `MARKER`: Character to use to mark value on graph (default `"*"`)
 
 `SPACE_BETWEEN_X_LABELS`: Space between labels on x-axis (default `5`)
+
+`SHOW_OUTLINE`: Draw outline around graph (default `true`)

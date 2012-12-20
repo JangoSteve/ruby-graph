@@ -5,6 +5,7 @@ class GraphDraw
   EMPTY_CHAR = " "
   MARKER = "*"
   SPACE_BETWEEN_X_LABELS = 5
+  SHOW_OUTLINE = true
 
   attr_accessor :data
 
@@ -18,6 +19,8 @@ class GraphDraw
   end
 
   def draw_data
+    draw_x_border if SHOW_OUTLINE
+
     HEIGHT.times do |i|
       line = HEIGHT - i
 
@@ -27,6 +30,7 @@ class GraphDraw
       self.data.hash.each do |key, value|
         self.draw_data_line(line, key)
       end
+      print "|" if SHOW_OUTLINE
       print "\n"
     end
   end
@@ -52,13 +56,19 @@ class GraphDraw
   end
 
   def draw_x_axis
-    puts HORIZONTAL_BORDER * axis_length
+    draw_x_border
 
     data.array.each do |key, value|
       print " " * SPACE_BETWEEN_X_LABELS
       print key
     end
     print "\n"
+  end
+
+  def draw_x_border
+    print "+"
+    print HORIZONTAL_BORDER * axis_length
+    puts "+"
   end
 
   def axis_length
