@@ -27,11 +27,16 @@ height = 20
 scaled_values = data_hash.values.map{ |v| (max.to_f / 20 * v).round }
 puts scaled_values.inspect
 
+axis_length = data_array.map{ |a| a[0] }.inject(0) { |i, key, value| i += (key.length + 1) } + 1
+
 height.times do
-  puts "|"
+  print "|"
+  data_hash.keys.size.times do
+    print " *  "
+  end
+  print"\n"
 end
 
-axis_length = data_array.map{ |a| a[0] }.inject(0) { |i, key, value| i += (key.length + 1) } + 1
 axis_length.times do
   print "-"
 end
