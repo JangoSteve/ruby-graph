@@ -17,3 +17,19 @@ data_array = data.split(/\n/).map(&:strip).reject{ |s| s.nil? || s == "" }.map{ 
 
 puts data
 puts data_array.inspect
+
+20.times do
+  puts "|"
+end
+
+100.times do
+  print "-"
+end
+puts " "
+2.times do
+  print " "
+end
+
+data_array.each do |key, value|
+  print "#{key} "
+end
