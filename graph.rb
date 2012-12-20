@@ -21,7 +21,9 @@ puts "OUTPUT:\n"
 max = data_hash.values.max
 puts "MAX: #{max}"
 
-20.times do
+height = 20
+
+height.times do
   puts "|"
 end
 
