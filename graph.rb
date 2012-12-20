@@ -16,16 +16,12 @@ EOC
 data_array = data.split(/\n/).map(&:strip).reject{ |s| s.nil? || s == "" }.map{ |s| s.split(/\s/) }
 data_hash = Hash[data_array].inject(Hash.new){ |h, a| h[a[0]] = a[1].to_i; h }
 
-puts "OUTPUT:\n"
-
 max = data_hash.values.max
-puts "MAX: #{max}"
 
 height = 20
 
 # Calculate scaled values
 scaled_hash = data_hash.inject(Hash.new){ |h, a| h[a[0]] = (max.to_f / 20 * a[1]).round; h }
-puts scaled_hash.inspect
 
 axis_length = data_array.map{ |a| a[0] }.inject(0) { |i, key, value| i += (key.length + 1) } + 1
 
@@ -49,3 +45,4 @@ print "\n"
 data_array.each do |key, value|
   print " #{key}"
 end
+print "\n"
