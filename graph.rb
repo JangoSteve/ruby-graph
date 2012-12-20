@@ -14,11 +14,15 @@ data = <<-EOC
 EOC
 
 data_array = data.split(/\n/).map(&:strip).reject{ |s| s.nil? || s == "" }.map{ |s| s.split(/\s/) }
+data_hash = Hash[data_array]
 
-puts data
-puts data_array.inspect
+keys = data_array.collect{ |a| a[0] }
+values = data_array.collect{ |a| a[1].to_i }
 
 puts "OUTPUT:\n"
+
+max = values.max
+puts "MAX: #{max}"
 
 20.times do
   puts "|"
