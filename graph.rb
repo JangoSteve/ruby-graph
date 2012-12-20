@@ -13,4 +13,7 @@ data = <<-EOC
   Dec 6
 EOC
 
+data_array = data.split(/\n/).reject{ |s| s.nil? || s == "" }.map(&:strip)
+
 puts data
+puts data_array.inspect
