@@ -18,7 +18,7 @@ From graph_draw.rb:
 
 `EMPTY_CHAR`: Character to use for empty graph space (default `" "`)
 
-`MARKER`: Character to use to mark value on graph (default `"*"`)
+`MARKER`: Character to use to mark value on graph (default `"\e[32m*\e[0m"` (which is a green asterisk))
 
 `SPACE_BETWEEN_X_LABELS`: Space between labels on x-axis (default `5`)
 

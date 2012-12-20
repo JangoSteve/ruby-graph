@@ -3,7 +3,7 @@ class GraphDraw
   VERTICAL_BORDER = "|"
   HORIZONTAL_BORDER = "-"
   EMPTY_CHAR = " "
-  MARKER = "*"
+  MARKER = "\e[32m*\e[0m"
   SPACE_BETWEEN_X_LABELS = 5
   SHOW_OUTLINE = true
 
