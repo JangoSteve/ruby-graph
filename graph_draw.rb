@@ -1,5 +1,10 @@
 class GraphDraw
   HEIGHT = 20
+  VERTICAL_BORDER = "|"
+  HORIZONTAL_BORDER = "-"
+  EMPTY_CHAR = " "
+  MARKER = "*"
+
   attr_accessor :data
 
   def initialize(data)
@@ -16,7 +21,7 @@ class GraphDraw
       this_line = HEIGHT - i
       keys_this_line = self.data.scaled_hash.select{ |k, v| v == this_line }.keys
 
-      print "|"
+      print VERTICAL_BORDER
 
       self.data.hash.each do |k, v|
         # Space to print before/after "*"
@@ -24,9 +29,9 @@ class GraphDraw
         space_before = (k.length.to_f / 2).to_i
         space_after = k.length - space_before
 
-        space_before.times{ print " " }
-        print keys_this_line.include?(k) ? "*" : " "
-        space_after.times{ print " "}
+        space_before.times{ print EMPTY_CHAR }
+        print keys_this_line.include?(k) ? MARKER : EMPTY_CHAR
+        space_after.times{ print EMPTY_CHAR }
       end
       print"\n"
     end
@@ -34,7 +39,7 @@ class GraphDraw
 
   def draw_x_axis
     axis_length.times do
-      print "-"
+      print HORIZONTAL_BORDER
     end
     print "\n"
 
