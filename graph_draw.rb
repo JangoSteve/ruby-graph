@@ -1,9 +1,10 @@
 class GraphDraw
-  HEIGHT = 20
+  HEIGHT = 30
   VERTICAL_BORDER = "|"
   HORIZONTAL_BORDER = "-"
   EMPTY_CHAR = " "
   MARKER = "*"
+  SPACE_BETWEEN_X_LABELS = 5
 
   attr_accessor :data
 
@@ -22,12 +23,13 @@ class GraphDraw
       keys_this_line = self.data.scaled_hash.select{ |k, v| v == this_line }.keys
 
       print VERTICAL_BORDER
+      SPACE_BETWEEN_X_LABELS.times{ print " " }
 
       self.data.hash.each do |k, v|
         # Space to print before/after "*"
         # Try to print in middle, but if odd length, e.g. 5, print 2 space before + 3 after
-        space_before = (k.length.to_f / 2).to_i
-        space_after = k.length - space_before
+        space_before = (k.length.to_f / 2).to_i - 1
+        space_after = (k.length + SPACE_BETWEEN_X_LABELS) - space_before - 1
 
         space_before.times{ print EMPTY_CHAR }
         print keys_this_line.include?(k) ? MARKER : EMPTY_CHAR
@@ -44,12 +46,13 @@ class GraphDraw
     print "\n"
 
     data.array.each do |key, value|
-      print " #{key}"
+      SPACE_BETWEEN_X_LABELS.times{ print " " }
+      print key
     end
     print "\n"
   end
 
   def axis_length
-    @axis_length ||= self.data.array.map{ |a| a[0] }.inject(0) { |i, key, value| i += (key.length + 1) } + 1
+    @axis_length ||= self.data.array.map{ |a| a[0] }.inject(0) { |i, key, value| i += (key.length + SPACE_BETWEEN_X_LABELS) } + SPACE_BETWEEN_X_LABELS
   end
 end
