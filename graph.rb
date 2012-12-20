@@ -23,6 +23,10 @@ puts "MAX: #{max}"
 
 height = 20
 
+# Calculate scaled values
+scaled_values = data_hash.values.map{ |v| (max.to_f / 20 * v).round }
+puts scaled_values.inspect
+
 height.times do
   puts "|"
 end
