@@ -40,9 +40,7 @@ class GraphDraw
   end
 
   def draw_x_axis
-    axis_length.times do
-      print HORIZONTAL_BORDER
-    end
+    axis_length.times{ print HORIZONTAL_BORDER }
     print "\n"
 
     data.array.each do |key, value|
