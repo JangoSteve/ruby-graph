@@ -7,6 +7,11 @@ class GraphDraw
   end
 
   def draw
+    draw_data
+    draw_x_axis
+  end
+
+  def draw_data
     HEIGHT.times do |i|
       this_line = HEIGHT - i
       keys_this_line = self.data.scaled_hash.select{ |k, v| v == this_line }.keys
@@ -25,7 +30,9 @@ class GraphDraw
       end
       print"\n"
     end
+  end
 
+  def draw_x_axis
     axis_length.times do
       print "-"
     end
