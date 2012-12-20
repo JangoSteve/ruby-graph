@@ -25,7 +25,7 @@ class GraphDraw
       line = HEIGHT - i
 
       print VERTICAL_BORDER
-      print " " * SPACE_BETWEEN_X_LABELS
+      print EMPTY_CHAR * SPACE_BETWEEN_X_LABELS
 
       self.data.hash.each do |key, value|
         self.draw_data_line(line, key)
