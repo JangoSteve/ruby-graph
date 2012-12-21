@@ -19,9 +19,13 @@ class DataProcess
     @max ||= self.hash.values.max
   end
 
+  def scale
+    GraphDraw::HEIGHT / self.max.to_f
+  end
+
   def scaled_hash
     # Calculate scaled values
-    @scaled_hash ||= self.hash.inject(Hash.new){ |h, a| h[a[0]] = ( GraphDraw::HEIGHT / self.max.to_f * a[1]).round; h }
+    @scaled_hash ||= self.hash.inject(Hash.new){ |h, a| h[a[0]] = (self.scale * a[1]).round; h }
   end
 
 end

@@ -6,6 +6,8 @@ class GraphDraw
   MARKER = "\e[32m*\e[0m"
   SPACE_BETWEEN_X_LABELS = 5
   SHOW_OUTLINE = true
+  SHOW_SCALE = true
+  SCALE_PRECISION = 1
 
   attr_accessor :data
 
@@ -24,6 +26,7 @@ class GraphDraw
     HEIGHT.times do |i|
       line = HEIGHT - i
 
+      print scale_label(line) if SHOW_SCALE
       print VERTICAL_BORDER
       print EMPTY_CHAR * SPACE_BETWEEN_X_LABELS
 
@@ -43,6 +46,19 @@ class GraphDraw
     print EMPTY_CHAR * space_after(key)
   end
 
+  def scale_width
+    precision_padding = SCALE_PRECISION + (SCALE_PRECISION > 0 ? 1 : 0)
+    self.data.max.to_s.length + precision_padding
+  end
+
+  def scale_label(line)
+    scaled_value(line).to_s.rjust(scale_width) + " "
+  end
+
+  def scaled_value(line)
+    (line / self.data.scale).round(SCALE_PRECISION)
+  end
+
   def key_this_line?(line, key)
     self.data.scaled_hash.any?{ |k, v| k == key && v == line }
   end
@@ -58,6 +74,7 @@ class GraphDraw
   def draw_x_axis
     draw_x_border
 
+    draw_scale_space if SHOW_SCALE
     data.array.each do |key, value|
       print " " * SPACE_BETWEEN_X_LABELS
       print key
@@ -66,9 +83,14 @@ class GraphDraw
   end
 
   def draw_x_border
+    draw_scale_space if SHOW_SCALE
     print "+"
     print HORIZONTAL_BORDER * axis_length
     puts "+"
+  end
+
+  def draw_scale_space
+    print " " * (scale_width + 1)
   end
 
   def axis_length
