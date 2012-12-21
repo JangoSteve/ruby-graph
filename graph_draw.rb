@@ -5,6 +5,7 @@ class GraphDraw
   VERTICAL_BORDER = "|"
   HORIZONTAL_BORDER = "-"
   EMPTY_CHAR = "\e[30m-\e[0m"
+  VERTICAL_EMPTY_CHAR = "\e[30m+\e[0m"
   MARKER = "\e[32m◉\e[0m"
   SPACE_BETWEEN_X_LABELS = 5
   SHOW_OUTLINE = true
@@ -44,7 +45,7 @@ class GraphDraw
     # Space to print before/after "*"
     # Try to print in middle, but if odd length, e.g. 5, print 2 space before + 3 after
     print EMPTY_CHAR * space_before(key)
-    print key_this_line?(line, key) ? MARKER : EMPTY_CHAR
+    print key_this_line?(line, key) ? MARKER : VERTICAL_EMPTY_CHAR
     print EMPTY_CHAR * space_after(key)
   end
 
