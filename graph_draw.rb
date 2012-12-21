@@ -1,9 +1,11 @@
+# encoding: utf-8
+
 class GraphDraw
   HEIGHT = 30
   VERTICAL_BORDER = "|"
   HORIZONTAL_BORDER = "-"
-  EMPTY_CHAR = " "
-  MARKER = "\e[32m*\e[0m"
+  EMPTY_CHAR = "\e[30m-\e[0m"
+  MARKER = "\e[32m◉\e[0m"
   SPACE_BETWEEN_X_LABELS = 5
   SHOW_OUTLINE = true
   SHOW_SCALE = true
